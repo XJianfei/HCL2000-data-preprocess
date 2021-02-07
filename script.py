@@ -2,6 +2,8 @@
 
 import binascii
 import os
+import sys
+
 import warnings
 
 import numpy as np
@@ -35,7 +37,7 @@ def main(filename):
                     bit = binascii.hexlify(f.read(1))
                     data = ascii_dic[chr(bit[0])] + ascii_dic[chr(bit[1])]
                     for k in range(8):
-                        word[i][j*8+k] = (1-int(data[k]))*255
+                        word[i][j*8+k] = (int(data[k]))*255
 
             save_path = os.path.join(
                 DEFAULT_SAVE_PATH,
@@ -50,4 +52,5 @@ def main(filename):
 
 
 if __name__ == '__main__':
-    main('hh001.hcl')
+    main(sys.argv[1])
+#    main('xx002.hcl')
